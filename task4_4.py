@@ -4,30 +4,40 @@ def parse_input(user_input):
     return cmd, *args
 
 def add_contact(args, contacts):
-    name, phone = args
-    contacts[name] = phone
-    return "Contact added."
+    try:
+        name, phone = args
+        contacts[name] = phone
+        return "Contact added."
+    except ValueError:
+        return "Невірна кількість введених параметрів" 
 
 def change_contact(args, contacts):
-    name, phone = args
-    if str(args[0]).strip() in contacts:
-        contacts[name] = phone
-    else:
-        return "Контакт не знайдено."     
-    return "Contact updated."
+    try:
+        name, phone = args
+        if str(args[0]).strip() in contacts:
+            contacts[name] = phone
+        else:
+            return "Контакт не знайдено."     
+        return "Contact updated."
+    except ValueError:
+        return "Невірна кількість введених параметрів"
+
 # python e:\MyStudy\task4_4.py
 def show_phone(args, contacts):
-    name = args[0]
-    if str(args[0]).strip() in contacts:
-       return contacts[name]
-    else:
-        return "Контакт не знайдено."     
+    try:
+        name = args[0]
+        if str(args[0]).strip() in contacts:
+           return contacts[name]
+        else:
+           return "Контакт не знайдено."     
+    except ValueError:
+        return "Невірна кількість введених параметрів"
 
-def all(contacts):
-    #print(contacts)
-    for el in contacts:
-        print(el+"  "+contacts.get(el))
-    return 
+#def all(contacts):
+#    #print(contacts)
+#    for el in contacts:
+#        print(el+"  "+contacts.get(el))
+#    return 
 
 def main():
     contacts = {}
@@ -41,27 +51,18 @@ def main():
         elif command == "hello":
             print("How can I help you?")
         elif command == "add":
-            try:
-                print(add_contact(args, contacts))
-                print(contacts)
-            except ValueError:
-                print("Невірна кількість введених параметрів") 
-                print(contacts)
+            print(add_contact(args, contacts))
         elif command == "change":          
-            try:
-                print(change_contact(args, contacts))
-            except ValueError:
-                print("Невірна кількість введених параметрів") 
+            print(change_contact(args, contacts))
         elif command == "phone":          
-            try:
-                print(show_phone(args, contacts))
-            except ValueError:
-                print("Невірна кількість введених параметрів") 
+            print(show_phone(args, contacts))
         elif command == "all":          
-            try:
-                all(contacts)
-            except ValueError:
-                print("Невірна кількість введених параметрів") 
+             for el in contacts:
+                  print(el+"  "+contacts.get(el))
+            # try:  ніяких параметрів не потрібно
+            #        all(contacts)
+            # except ValueError:
+            #    print("Невірна кількість введених параметрів") 
         else:
             print("Invalid command.")
 
