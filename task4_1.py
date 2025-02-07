@@ -5,7 +5,7 @@ def total_salary(path):
     average = 0.0
     try:
         with open(path, 'r', encoding='utf-16', errors='ignore') as salary:
-            # якщо копіюиати з прикладу завдання utf-16,  набрати вручну - utf-
+            # якщо копіюиати з прикладу завдання utf-16,  набрати вручну - utf8
             # перший раз записав в файл дані з прикладу дом. завдання,
             # і зчитало utf-16
             n_row = 0
