@@ -8,14 +8,17 @@ def load_data(filename: str) -> list[str]:
         print("Файл не знайдено")
         return None  
     
-filename = "cats_file.txt"
-cats_data = load_data(filename)
-if cats_data != None:
-   cats_info = []
-   for el in cats_data:
-       el2 = re.split(',',el.strip())
-       cats_info.append({"id": el2[0], "name": el2[1], "age": el2[2]})
 
-    #print(cats_info)
-   for el in cats_info:    
-       print(el)    
+def get_cats_info(path):
+    cats_data = load_data(path)
+    cats_info = []
+    if cats_data != None:
+        for el in cats_data:
+            el2 = re.split(',',el.strip())
+            cats_info.append({"id": el2[0], "name": el2[1], "age": el2[2]})
+    return cats_info
+
+cats_info= get_cats_info("e:\cats_file.txt")
+#print(cats_info)
+for el in cats_info:    
+    print(el)
