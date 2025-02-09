@@ -33,8 +33,8 @@ def show_phone(args, contacts):
     except ValueError:
         return "Невірна кількість введених параметрів"
 
-def all():
-    pass
+def all(contacts):
+    return contacts.items() 
 
 def main():
     contacts = {}
@@ -53,9 +53,10 @@ def main():
             print(change_contact(args, contacts))
         elif command == "phone":          
             print(show_phone(args, contacts))
-        elif command == "all":          
-             for el in contacts:
-                  print(el+"  "+contacts.get(el))
+        elif command == "all": 
+             print(all(contacts))         
+            # for el in contacts:
+            #      print(el+"  "+contacts.get(el))
         else:
             print("Invalid command.")
 
